@@ -8,7 +8,7 @@ class UserController extends Controller
 {
     public function listAllUsers(){
         //lógica
-        return view('users.listAllUsers//x');
+        return view('users.listAllUsers');
     }
 
     public function listUserByID(){
