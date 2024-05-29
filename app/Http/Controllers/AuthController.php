@@ -6,11 +6,21 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    public function loginUser() {
-        return view('login.loginUser');
+    public function loginUser(Request $request) {
+        if($request->method() === 'GET'){
+        return view('auth.login.login');
+        } else {
+            $username = $request->username;
+            $password = $request->password;
+            $credentials = $request->only('username', 'password');
+            print($username . " - " . $password . '<br>');
+            print_r($credentials);
+
+            //Auth::atempt($credentials);
+        }
     }
 
     public function logoutUser() {
-        return view("logout.logoutUser");
+        return view("auth.logout.logoutUser");
     }
 }
