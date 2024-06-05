@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\facades\Auth;
+
+
 
 class AuthController extends Controller
 {
@@ -10,17 +13,22 @@ class AuthController extends Controller
         if($request->method() === 'GET'){
         return view('auth.login.login');
         } else {
-            $username = $request->username;
-            $password = $request->password;
-            $credentials = $request->only('username', 'password');
-            print($username . " - " . $password . '<br>');
-            print_r($credentials);
-
-            //Auth::atempt($credentials);
+            $credentials = $request->validate([
+                'email' => 'required|string|email',
+                'password' => 'required|string',
+            ]);
+            if(Auth::attempt($credentials)){
+                return redirect()->intended('/users')->with('success', 'Login realizado com sucesso.');
+            } else {
+                return back()->withErrors([
+                    'email' => 'Credencias inválidas.',
+                ])->withInput();
+            }
         }
     }
 
-    public function logoutUser() {
-        return view("auth.logout.logoutUser");
+    public function logoutUser(Request $request) {
+        Auth::logout();
+        return redirect()->route('login')->with('success', 'Logout realizado com sucesso.');
     }
 }

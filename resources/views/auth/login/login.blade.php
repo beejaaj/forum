@@ -9,92 +9,68 @@
         margin: 0;
         padding: 0;
         font-family: Arial, sans-serif;
-        background-color: #f0f5ff; /* Azul claro para o fundo */
-    }
-    header {
-        background-color: #007bff; /* Azul */
-        color: #fff;
-        padding: 10px;
-        text-align: center;
-    }
-    nav {
-        background-color: #e7f0ff; /* Azul claro */
-        width: 200px;
+        background-color: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         height: 100vh;
-        position: fixed;
-        top: 0;
-        left: 0;
     }
-    nav ul {
-        list-style-type: none;
-        padding: 0;
-    }
-    nav ul li {
-        padding: 10px;
-        border-bottom: 1px solid #ccdfff; /* Azul claro para a borda */
-    }
-    footer {
-        background-color: #007bff; /* Azul */
-        color: #fff;
-        padding: 10px;
-        text-align: center;
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-    }
-    .content {
-        margin-left: 220px; /* Ajuste de acordo com a largura da barra lateral */
-        padding: 20px;
-    }
-    /* Estilos específicos para o formulário de login */
-    .login-form {
-        margin: 50px auto;
-        width: 300px;
+    .container {
         background-color: #fff;
+        border-radius: 10px;
         padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        max-width: 100%;
+        text-align: center;
     }
-    .login-form input[type="text"],
-    .login-form input[type="password"] {
-        width: 100%;
-        padding: 10px;
+    h1 {
+        color: #4CAF50;
+    }
+    input[type="email"],
+    input[type="password"],
+    input[type="submit"] {
+        width: calc(100% - 20px);
+        padding: 15px;
         margin: 10px 0;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-    }
-    .login-form input[type="submit"] {
-        width: 100%;
-        padding: 10px;
-        margin-top: 10px;
-        background-color: #007bff;
-        color: #fff;
         border: none;
-        border-radius: 3px;
+        border-radius: 10px;
+        box-sizing: border-box;
+        background-color: #f0f0f0;
+        font-size: 16px;
+        color: #333;
+    }
+    input[type="email"],
+    input[type="password"] {
+        padding-left: 17px;
+        background-repeat: no-repeat;
+        background-position: 10px center;
+        background-size: 20px 20px;
+    }
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: #fff;
+        font-weight: bold;
         cursor: pointer;
     }
 </style>
 </head>
 <body>
 
-<header>
-    <h1>Login</h1>
-</header>
 
-<div class="content">
+
+<div class="container">
+    <h1>Login</h1>
     <div class="login-form">
-        <form action="{{ route('login') }}" method="post">
+        <form id="login-form" action="{{ route('login') }}" method="post">
             @csrf
-            <input type="text" name="username" placeholder="Usuário" required>
-            <input type="password" name="password" placeholder="Senha" required>
-            <input type="submit" value="Entrar">
+            <input type="email" id="email" name="email" placeholder="E-mail" value="{{ old('email')}}" required>
+            @error('email') <span>{{ $message }} </span> @enderror
+            <input type="password" id="password" name="password" placeholder="Senha" value="{{ old('password')}}" required>
+            @error('password') <span>{{ $message }} </span> @enderror
+            <input type="submit" value="Entrar" id="submit-button">
         </form>
     </div>
 </div>
-
-<footer>
-    <p>Rodapé - © 2024</p>
-</footer>
-
 </body>
 </html>

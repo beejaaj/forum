@@ -15,21 +15,33 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
-//UserController
-Route::get('/users', [UserController::class, 'listAllUsers'])->name('ListAllUsers');
-Route::get('/users/{uid}', [UserController::class, 'listUser'])->name('ListUser');
-Route::get('/users/create', [UserController::class, 'createUser'])->name('routeCreateUser');
-//Route::get('/users/{uid}/edit', [UserController::class, 'editUser'])->name('routeEditUser');
-//Route::get('/users/{uid}/delete', [UserController::class, 'deleteUser'])->name('routeDeleteUser');
+});*/
 //AuthControler
-//Route::get('/login', [AuthController::class, 'loginUser'])->name('routeLoginUser');
-Route::get('/logout', [AuthController::class, 'logoutUser'])->name('routeLogoutUser');
 Route::match (
     ['get', 'post'],
     '/login',
     [AuthController::class, 'loginUser']
 )->name('login');
+Route::get('/logout', [AuthController::class, 'logoutUser'])->name('logout');
+
+//UserController
+Route::match (
+    ['get', 'post'],
+    '/register',
+    [UserController::class, 'registerUser']
+)->name('register');
+
+//Controlar o usuario
+Route::middleware('auth')->group(function () {
+    Route::get('/users', [UserController::class, 'listAllUsers'])->name('ListAllUsers');
+    Route::get('/users/{uid}', [UserController::class, 'listUser'])->name('ListUser');
+    //Route::get('/users/{uid}/edit', [UserController::class, 'editUser'])->name('routeEditUser');
+    //Route::get('/users/{uid}/delete', [UserController::class, 'deleteUser'])->name('routeDeleteUser');
+});
+
+
+
+
      
