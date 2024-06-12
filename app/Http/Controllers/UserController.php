@@ -35,6 +35,12 @@ class UserController extends Controller
         ->with('message', 'Atualizado com sucesso!');
     }
 
+    public function deleteUser(Request $request, $uid) {
+        $user = User::where('id', $uid)->delete();
+        return redirect()->route('listAllUser')
+        ->with('message', 'Deletado com sucesso!');
+    }
+
     public function registerUser(Request $request) {
         if ($request->method() === 'GET'){
         return view('users.register.registerUser');
@@ -61,7 +67,5 @@ class UserController extends Controller
         return view('users.id.edit.editUser');
     }
 
-    public function deleteUser() {
-        return view('users.id.delete.deleteUser');
-    }
+
 }
