@@ -94,14 +94,28 @@
 <body>
 <div class="container">
   <h1>Perfil</h1>
-  
-  <form id="registration-form">
-    <input type="text" placeholder="Nome" disabled="">
-    <input type="password" placeholder="Senha" required>
-    <input type="email" placeholder="Email" required>
-    <input type="text" id="datepicker" placeholder="Data de Nascimento" required title="Preencher o campo">
-    <input type="submit" value="Salvar" id="submit-button">
+  <span>{{ session('message') }}</span>
+  @if($user != null)
+  <form id="registration-form" action="{{ route('UpdateUser', [$user->id]) }}" method="post" >
+    @csrf
+    @method('put')
+    <input type="text" id="name" name="name" placeholder="Nome" value="{{ $user->name}}" required>
+    @error('name') <span>{{ $message }} </span> @enderror
+    <input type="email" id="email" name="email" placeholder="E-mail" value="{{ $user->email}}" required>
+    @error('email') <span>{{ $message }} </span> @enderror
+    <input type="password" id="password" name="password" placeholder="Senha"  >
+    @error('password') <span>{{ $message }} </span> @enderror
+    <!--<input type="password" id="password_confirmation" name="password_confirmation" placeholder="Senha de Confirmação" >-->
+    <!--<input type="text" id="datepicker" placeholder="Data de Nascimento" required title="Preencher o campo">-->
+    <input type="submit" value="Edit" id="submit-button">
   </form>
+  
+  <form id="registration-form" action="{{ route('DeleteUser', [$user->id]) }}" method="post" >
+    @csrf
+    @method('delete')
+    <input type="submit" value="Deletar" id="submit-button">
+  </form>
+  @endif
   <input type="file" id="file-input" style="display: none;">
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

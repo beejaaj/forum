@@ -17,8 +17,22 @@ class UserController extends Controller
     }
 
     public function listUser(Request $request, $uid) {
-        print($uid);
-        //return view('users.id.listUser');
+        $user = User::where('id', $uid)->first();
+        $message;
+        return view('users.id.listUserById', ['user' => $user]);
+    }
+
+    public function updateUser(Request $request, $uid) {
+        $user = User::where('id', $uid)->first();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if ($request->password != ''){
+            $user->password = Hash::make($request->password);
+        }
+        $user->save();
+
+        return redirect()->route('ListUser', [$user->id])
+        ->with('message', 'Atualizado com sucesso!');
     }
 
     public function registerUser(Request $request) {
