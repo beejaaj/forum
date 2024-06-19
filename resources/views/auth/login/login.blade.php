@@ -68,7 +68,7 @@
             @error('email') <span>{{ $message }} </span> @enderror
             <input type="password" id="password" name="password" placeholder="Senha" value="{{ old('password')}}" required>
             @error('password') <span>{{ $message }} </span> @enderror
-            <input type="submit" value="Entrar" id="submit-button">
+            <input type="submit" value="Logar" id="submit-button">
         </form>
     </div>
 </div>

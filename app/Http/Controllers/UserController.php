@@ -37,7 +37,7 @@ class UserController extends Controller
 
     public function deleteUser(Request $request, $uid) {
         $user = User::where('id', $uid)->delete();
-        return redirect()->route('listAllUser')
+        return redirect()->intended('/')
         ->with('message', 'Deletado com sucesso!');
     }
 
@@ -59,7 +59,7 @@ class UserController extends Controller
 
             Auth::login($user);
 
-            return redirect()->route('ListAllUsers')->with('success', 'Registro realizado com sucesso');
+            return redirect()->intended('/')->with('success', 'Registro realizado com sucesso');
         }
     }
 

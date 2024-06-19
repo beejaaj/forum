@@ -18,7 +18,7 @@ class AuthController extends Controller
                 'password' => 'required|string',
             ]);
             if(Auth::attempt($credentials)){
-                return redirect()->intended('/users')->with('success', 'Login realizado com sucesso.');
+                return redirect()->intended('/')->with('success', 'Login realizado com sucesso.');
             } else {
                 return back()->withErrors([
                     'email' => 'Credencias inválidas.',
@@ -29,6 +29,6 @@ class AuthController extends Controller
 
     public function logoutUser(Request $request) {
         Auth::logout();
-        return redirect()->route('login')->with('success', 'Logout realizado com sucesso.');
+        return redirect()->intended('/')->with('success', 'Logout realizado com sucesso.');
     }
 }
