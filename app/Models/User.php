@@ -51,4 +51,11 @@ class User extends Authenticatable
     public function ratings(){
         return $this->hasMany(Rate::class);
     }
+
+    public function isModerator(){
+        return $this->role === 'moderator' || $this->role === 'admin';
+    }
+    public function isAdmin(){
+        return $this->role === 'admin';
+    }
 }
