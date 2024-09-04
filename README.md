@@ -3,4 +3,4 @@ Tendo as partes de autenticações para não ter acessos indevidos em certas par
 Vai ser adicionado a parte de topicos para usuarios poderem interagir tendo a criação do proprio topico, comentarios entre esses usuarios, geralmente oque tem nos foruns.
 
 Integrante:
-João Vitor Perez Saraiva
+Moisés Nogueira Silva
