@@ -4,6 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 
+Route::view('/', 'dashboard');
+
+/*controller
+Route::group(['prefix' => 'categories'], function(){
+    Route::get('/', [Category::class, 'index'])->name('categories.index');
+    //Route::get('/{id}/edit')
+//index, create, store, show, edit, update, destroy
+});*/
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,6 +50,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/users/{uid}/edit',
     [UserController::class, 'updateUser'])->name('UpdateUser');
     
+    //decorator @method delete...
     Route::delete('/users/{uid}/delete',
     [UserController::class, 'deleteUser'])->name('DeleteUser');
 });
@@ -53,8 +62,3 @@ Route::get('/criar_topico', function () {
 Route::get('/visualizar_topico', function () {
     return view('layouts.visualizar_topico');
 });
-
-
-
-
-     
