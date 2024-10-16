@@ -20,4 +20,12 @@ abstract class Post extends Model
     public function ratings(){
         return $this->hasMany(Rate::class);
     }
+
+    public function topic(){
+        return $this->hasOne(Topic::class);
+    }
+
+    public function comment(){
+        return $this->hasOne(Commentary::class);
+    }
 }

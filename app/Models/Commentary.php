@@ -16,4 +16,8 @@ class Commentary extends Post
     public function topic(){
         return $this->belongsTo(Topic::class);
     }
+
+    public function post(){
+        return $this->belongsTo(Post::class);
+    }
 }
