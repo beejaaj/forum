@@ -18,6 +18,7 @@ class Commentary extends Post
     }
 
     public function post(){
-        return $this->belongsTo(Post::class);
+        return $this->morphOne(Post::class, 'postable');
+        //return $this->belongsTo(Post::class);
     }
 }

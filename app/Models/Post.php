@@ -21,11 +21,15 @@ abstract class Post extends Model
         return $this->hasMany(Rate::class);
     }
 
-    public function topic(){
+    //Relacionamento polimórfico 1-1
+    public function postable(){
+        return $this->morphTo();
+    }
+    /*public function topic(){
         return $this->hasOne(Topic::class);
     }
 
     public function comment(){
         return $this->hasOne(Commentary::class);
-    }
+    }*/
 }

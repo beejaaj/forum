@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('comments', function (Blueprint $table) {
-            $table->unsignedBigInteger('id')->primary();
-            $table->foreign('id')->references('id')->on('posts');
+            $table->unsignedBigInteger('comment_id')->primary();
+            //$table->foreign('id')->references('id')->on('posts');
             $table->unsignedBigInteger('topic_id');
-            $table->foreign('topic_id')->references('id')->on('topics');
+            $table->foreign('topic_id')->references('topic_id')->on('topics');
             $table->text('content');
             $table->timestamps();
         });
