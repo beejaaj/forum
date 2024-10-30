@@ -50,7 +50,14 @@ class TopicController extends Controller
         $topic = Topic::create([
             'title'=>$request->input('title'),
             'description'=>$request->input('description'),
-            'status'=>$request->input('status')
+            'status'=>$request->input('status'),
+            'category_id'=>$request->category
+        ]);
+
+        $topic->post()->create([
+            'user_id' => Auth::id()
+            // 'image'
+            //imagem file_request
         ]);
 
         $post = new Post([
